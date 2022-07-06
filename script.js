@@ -28,66 +28,66 @@ const addPokes = (arr) => {
 }
 
 
-const removePokes = (arr) => {
+// const removePokes = (arr) => {
 
-    if(arr.length > 0) {
+//     if(arr.length > 0) {
 
-            arr.forEach((poke) => {
+//             arr.forEach((poke) => {
 
-                let types = poke.types.join(",").replace(/,/g, " & ").split();
-                if(arr.includes(poke.name)) {
+//                 let types = poke.types.join(",").replace(/,/g, " & ").split();
+//                 if(arr.includes(poke.name)) {
                     
-                    arr[arr.length-1] = "";
-                    console.log(currPokes);
-                    main.innerHTML -= ` <div class="card">
-                                            <img src="${poke.sprite}" class="card__image">
-                                            <p class="card__content card__heading">${poke.name}</p>
-                                            <p class="card__content card__text">${poke.name} (#${poke.id}) is a ${types} type Pokemon.</p>
-                                        </div>`
-                }
-            })
-    }
-}
+//                     arr[arr.length-1] = "";
+//                     console.log(currPokes);
+//                     main.innerHTML -= ` <div class="card">
+//                                             <img src="${poke.sprite}" class="card__image">
+//                                             <p class="card__content card__heading">${poke.name}</p>
+//                                             <p class="card__content card__text">${poke.name} (#${poke.id}) is a ${types} type Pokemon.</p>
+//                                         </div>`
+//                 }
+//             })
+//     }
+// }
 
-const searchPoke = (searchString, arr) => {
+// const searchPoke = (searchString, arr) => {
 
 
-    currSearch = String(searchString);
-    let currSearchLength = currSearch.length;
-    let searchArr = [];
+//     currSearch = String(searchString);
+//     let currSearchLength = currSearch.length;
+//     let searchArr = [];
 
-    console.log("current search:" + currSearch);
+//     console.log("current search:" + currSearch);
 
-    arr.forEach((poke) => {
+//     arr.forEach((poke) => {
 
-        if(currSearch.includes(poke.name.substring(0,currSearchLength))) {
+//         if(currSearch.includes(poke.name.substring(0,currSearchLength))) {
 
-            searchArr.push(poke);
-            currPokes = [...searchArr];
-            console.log(currPokes);
-        }
-    });
+//             searchArr.push(poke);
+//             currPokes = [...searchArr];
+//             console.log(currPokes);
+//         }
+//     });
 
-    console.log("searchArr:" + searchArr);
-    return addPokes(searchArr);
+//     console.log("searchArr:" + searchArr);
+//     return addPokes(searchArr);
     
 
-}
+// }
 
-searchbar.addEventListener("input", () =>{
+// searchbar.addEventListener("input", () =>{
 
-    console.log(searchbar.value.length);
+//     console.log(searchbar.value.length);
 
-    if(searchbar.value.length != 0)
-    {
-        searchPoke(searchbar.value, pokemonArray); 
+//     if(searchbar.value.length != 0)
+//     {
+//         searchPoke(searchbar.value, pokemonArray); 
         
-    } 
-    if(searchbar.value.length == 0 && currPokes.length >= 1) {
-        console.log("running here");
-        removePokes(currPokes);
-    }
+//     } 
+//     if(searchbar.value.length == 0 && currPokes.length >= 1) {
+//         console.log("running here");
+//         removePokes(currPokes);
+//     }
 
-});
+// });
 
-//if(!currSearch){addPokes(pokemonArray)};
+if(!currSearch){addPokes(pokemonArray)};

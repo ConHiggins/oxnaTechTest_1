@@ -19,9 +19,9 @@ const addPokes = (arr) => {
         poke.name = capitaliseWord(poke.name);
 
         main.innerHTML += ` <div class="card">
-                                <img src="${poke.sprite}" class="card__image">"
-                                <p class="card__heading">${poke.name}</p>
-                                <p class="card__text">${poke.name} (#${poke.id}) is a ${types} type Pokemon.</p>
+                                <img src="${poke.sprite}" class="card__image">
+                                <p class="card__content card__heading">${poke.name}</p>
+                                <p class="card__content card__text">${poke.name} (#${poke.id}) is a ${types} type Pokemon.</p>
                             </div>`
     })
 

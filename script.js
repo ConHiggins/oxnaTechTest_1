@@ -30,13 +30,15 @@ const addPokes = (arr) => {
 
 const removePokes = (arr) => {
 
-    if(arr.length != 0) {
+    if(arr.length > 0) {
 
             arr.forEach((poke) => {
 
                 let types = poke.types.join(",").replace(/,/g, " & ").split();
                 if(arr.includes(poke.name)) {
-                    arr.pop(poke.name);
+                    
+                    arr[arr.length-1] = "";
+                    console.log(currPokes);
                     main.innerHTML -= ` <div class="card">
                                             <img src="${poke.sprite}" class="card__image">
                                             <p class="card__content card__heading">${poke.name}</p>
@@ -62,7 +64,7 @@ const searchPoke = (searchString, arr) => {
 
             searchArr.push(poke);
             currPokes = [...searchArr];
-            
+            console.log(currPokes);
         }
     });
 
@@ -80,7 +82,9 @@ searchbar.addEventListener("input", () =>{
     {
         searchPoke(searchbar.value, pokemonArray); 
         
-    } else if(currPokes.length > 0) {
+    } 
+    if(searchbar.value.length == 0 && currPokes.length >= 1) {
+        console.log("running here");
         removePokes(currPokes);
     }
 

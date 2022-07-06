@@ -1,5 +1,5 @@
 const main = document.querySelector(".card-container")
-import {pokemonArray} from "../data/pokemon.js";
+import {pokemonArray} from "./data/pokemon.js";
 const searchbar = document.querySelector(".search")
 let currSearch;
 let currPokes = [];

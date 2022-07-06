@@ -1,7 +1,4 @@
 const main = document.querySelector(".card-container")
-
-
-
 import {pokemonArray} from "../data/pokemon.js";
 
 
@@ -11,8 +8,6 @@ const capitaliseWord = (word) => {
 }
 
 const addPokes = (arr) => {
-
-
     arr.forEach((poke) => {
 
         let types = poke.types.join(",").replace(/,/g, " & ").split();

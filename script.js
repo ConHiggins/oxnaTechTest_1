@@ -11,6 +11,7 @@ const capitaliseWord = (word) => {
 }
 
 const addPokes = (arr) => {
+    console.log("adding pokes");
     arr.forEach((poke) => {
 
         let types = poke.types.join(",").replace(/,/g, " & ").split();
@@ -28,76 +29,33 @@ const addPokes = (arr) => {
 
 }
 
-
-if(searchbar.value.length==0){addPokes(pokemonArray)};
-/////////////////////////////////////////////////////////////////  Extensions  /////////////////////////////////////////////////////////////////////////
-const removePokes = (arr) => {
-
-    if(arr.length > 0) {
-
-            arr.forEach((poke) => {
-
-                
-                if(arr.includes(poke.name)) {
-                    arr.splice(arr.indexOf(poke),1);
-                    let types = poke.types.join(",").replace(/,/g, " & ").split();
-                    main.innerHTML -= ` <div class="card">
-                                            <img src="${poke.sprite}" class="card__image">
-                                            <p class="card__content card__heading">${poke.name}</p>
-                                            <p class="card__content card__text">${poke.name} (#${poke.id}) is a ${types} type Pokemon.</p>
-                                        </div>`
-                }
-                if(searchArr.includes(poke)) {
-                    searchArr.splice(searchArr.indexOf(poke),1);
-                }
-            })
-    }
-
-    arr = [];
     
-}
 
-const searchPoke = (searchString, arr) => {
+/////////////////////////////////////////////////////////////////  Extensions  /////////////////////////////////////////////////////////////////////////
 
-
-    currSearch = String(searchString);
+const searchFilter = (poke) => {
+ 
+    
+    currSearch = String(searchbar.value);
     let currSearchLength = currSearch.length;
     
-
-    arr.forEach((poke) => {
-
-        if(currSearch.includes(poke.name.substring(0,currSearchLength))) {
-
-            searchArr.push(poke);
-            currPokes = [...searchArr];
-            
-        }
-        else { 
-
-            searchArr.splice(searchArr.indexOf(poke),1);
-        }
-    });
-
-    return addPokes(searchArr);
+    if(currSearch.charAt(0) != currSearch.charAt(0).toUpperCase()) {
+        
+        currSearch = currSearch.charAt(0).toUpperCase() + currSearch.slice(1);
     
+    };
+    return((currSearch == (poke.name.substring(0,currSearchLength))));
 
 }
 
-searchbar.addEventListener("input", () =>{
+searchbar.addEventListener("keyup", () =>{
 
-    if(searchbar.value.length >= 1)
-    {
-        searchPoke(searchbar.value, pokemonArray); 
-        
-    } 
-    else {
-        
-        if(currPokes.length > 0) {
-            removePokes(currPokes);
-        }
-        else return;
-    }
-
-});
-
-//
+    currPokes = [];
+    main.innerHTML = "";
+     
+    searchArr = pokemonArray.filter(searchFilter);
+    console.log("searching");
+    addPokes(searchArr);
+    console.log("currPokes:" + currPokes);
+    console.log("searchArr:" + searchArr);
+})
